@@ -15,6 +15,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
+/*
+磁気キーボードのためにカスタムされています。
+*/
+
 #include <stdint.h>
 #include "keyboard.h"
 #include "keycode_config.h"
@@ -588,6 +593,11 @@ static inline void generate_tick_event(void) {
     }
 }
 
+
+/*
+不要な処理やmatrix.c内で実行する処理をコメントアウト
+*/
+
 /**
  * @brief This task scans the keyboards matrix and processes any key presses
  * that occur.
@@ -601,15 +611,20 @@ static bool matrix_task(void) {
         return false;
     }
 
-    static matrix_row_t matrix_previous[MATRIX_ROWS];
+//    static matrix_row_t matrix_previous[MATRIX_ROWS];
 
+/*
     matrix_scan();
     bool matrix_changed = false;
     for (uint8_t row = 0; row < MATRIX_ROWS && !matrix_changed; row++) {
         matrix_changed |= matrix_previous[row] ^ matrix_get_row(row);
     }
+*/
+/*追加*/
+    bool matrix_changed = matrix_scan();
 
     matrix_scan_perf_task();
+
 
     // Short-circuit the complete matrix processing if it is not necessary
     if (!matrix_changed) {
@@ -617,12 +632,16 @@ static bool matrix_task(void) {
         return matrix_changed;
     }
 
+
+/*
     if (debug_config.matrix) {
         matrix_print();
     }
+*/
 
-    const bool process_keypress = should_process_keypress();
+//    const bool process_keypress = should_process_keypress();
 
+/*
     for (uint8_t row = 0; row < MATRIX_ROWS; row++) {
         const matrix_row_t current_row = matrix_get_row(row);
         const matrix_row_t row_changes = current_row ^ matrix_previous[row];
@@ -646,6 +665,8 @@ static bool matrix_task(void) {
 
         matrix_previous[row] = current_row;
     }
+*/
+/*switch_eventsはライティング系の機能なので、使用したい際はdhangedフラグを立ててmatrix.c内とかで実行する必要があるかも*/
 
     return matrix_changed;
 }
