@@ -1,0 +1,13 @@
+pythonをインストールしpathを通しておく
+
+kle(keyboard-layout-editor.com)を使用しレイアウトを作成、
+vial.json作成時と同様に、Top Legendに row,col を入力したjsonファイルを保存する。
+
+kle_2_lay.pyw を起動しkle.jsonファイルを読み込む。
+レイアウトが表示されるので間違いないことを確認し、key_leyout.cを出力する。
+
+c_2_lay.pyw を起動し出力したkey_leyout.cを読み込みデータを確認しておく。
+
+問題なければkeyboardフォルダ内にkey_leyout.cを格納する
+
+ついでにkeyboard.json, vial.json用のlayoutデータも出るようにした
