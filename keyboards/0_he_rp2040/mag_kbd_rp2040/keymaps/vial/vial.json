@@ -1,0 +1,182 @@
+	{
+    "customKeycodes": [
+        {
+            "name": "Sensitivity Stage Up",
+            "title": "Increase magnetic sensitivity offset stage",
+            "shortName": "Sens\nUp"
+        },
+        {
+            "name": "Sensitivity Stage Down",
+            "title": "Decrease magnetic sensitivity offset stage",
+            "shortName": "Sens\nDown"
+        },
+        {
+            "name": "Sensitivity Stage 0",
+            "title": "Set magnetic sensitivity offset stage to 0",
+            "shortName": "Sens\n0"
+        },
+        {
+            "name": "Sensitivity Stage 1",
+            "title": "Set magnetic sensitivity offset stage to 1",
+            "shortName": "Sens\n1"
+        },
+        {
+            "name": "Sensitivity Stage 2",
+            "title": "Set magnetic sensitivity offset stage to 2",
+            "shortName": "Sens\n2"
+        },
+        {
+            "name": "Sensitivity Stage 3",
+            "title": "Set magnetic sensitivity offset stage to 3",
+            "shortName": "Sens\n3"
+        },
+        {
+            "name": "Sensitivity Stage 4",
+            "title": "Set magnetic sensitivity offset stage to 4",
+            "shortName": "Sens\n4"
+        },
+        {
+            "name": "Cancel Enable",
+            "title": "Enable any key canceling",
+            "shortName": "Cancel\nOn"
+        },
+        {
+            "name": "Cancel Disable",
+            "title": "Disable any key canceling",
+            "shortName": "Cancel\nOff"
+        }
+    ],
+    "matrix": {
+        "rows": 5,
+        "cols": 8
+    },
+    "layouts": {
+		"labels":[
+			"ANSI",
+			["bot",
+			"bot1",
+			"bot2",
+			"bot3"
+			]
+		],
+        "keymap":[
+  [
+    {
+      "x": 1
+    },
+    "0,7",
+    "0,5",
+    "0,3",
+    "0,0",
+    "0,1",
+    "0,2",
+    "0,4"
+  ],
+  [
+    "3,6",
+    {
+      "w": 1.5
+    },
+    "0,6",
+    "1,7",
+    "1,5",
+    "1,3",
+    "1,0",
+    {
+      "x": 0.25,
+      "w": 1.25,
+      "h": 2,
+      "w2": 1.5,
+      "h2": 1,
+      "x2": -0.25
+    },
+    "2,5\n\n\n0,0",
+    {
+      "x": 1,
+      "w": 1.5
+    },
+    "2,5\n\n\n0,1"
+  ],
+  [
+    "3,4",
+    {
+      "w": 1.75
+    },
+    "1,1",
+    "1,2",
+    "1,4",
+    "1,6",
+    "2,7\n\n\n0,0",
+    {
+      "x": 1.5,
+      "w": 2.25
+    },
+    "2,7\n\n\n0,1"
+  ],
+  [
+    "3,2",
+    {
+      "w": 2
+    },
+    "2,3",
+    "2,0",
+    "2,1",
+    "2,2",
+    "2,4",
+    "2,6"
+  ],
+  [
+    "3,1\n\n\n1,0",
+    {
+      "w": 1.5
+    },
+    "3,7\n\n\n1,0",
+    {
+      "w": 1.25
+    },
+    "3,5\n\n\n1,0",
+    {
+      "w": 2.75
+    },
+    "3,3\n\n\n1,0",
+    {
+      "w": 1.5
+    },
+    "3,0\n\n\n1,0"
+  ],
+  [
+    {
+      "y": 0.25
+    },
+    "3,1\n\n\n1,1",
+    {
+      "w": 1.5
+    },
+    "3,7\n\n\n1,1",
+    {
+      "w": 2.75
+    },
+    "3,5\n\n\n1,1",
+    {
+      "w": 2.75
+    },
+    "3,3\n\n\n1,1"
+  ],
+  [
+    "3,1\n\n\n1,2",
+    {
+      "w": 2.25,
+      "d": true
+    },
+    "4,0\n\n\n1,2",
+    "3,7\n\n\n1,2",
+    {
+      "w": 2.75,
+      "d": true
+    },
+    "4,0\n\n\n1,2",
+    "3,5\n\n\n1,2"
+  ]
+]
+    }
+}

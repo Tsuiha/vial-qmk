@@ -1,0 +1,28 @@
+{
+    "keyboard_name": "mag_sw_tester"
+    "manufacturer": "mag_sw_tester"
+    "usb": {
+        "vid": "0xFEED"
+        "pid": "0x0001"
+        "device_version": "0.0.1"
+		"polling_interval":1
+    }
+	"processor": "RP2040"
+    "board": "GENERIC_PROMICRO_RP2040"
+    "bootloader": "rp2040"
+    "matrix_pins": {
+		"custom": true
+	}
+    "features": {
+        "mousekey": true
+		"extrakey": true
+		"nkro": true
+	}
+	"layouts": {
+        "LAYOUT": {
+            "layout": [
+				{"matrix": [0, 0], "x": 0, "y": 0.0}
+            ]
+        }
+	}
+}
