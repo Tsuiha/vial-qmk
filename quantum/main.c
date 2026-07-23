@@ -15,6 +15,7 @@
  */
 
 #include "keyboard.h"
+#include "timer.h"
 
 void platform_setup(void);
 
@@ -45,6 +46,9 @@ int main(void) {
     protocol_post_init();
 
     /* Main loop */
+    static uint32_t mag_he_last_raw_hid_task      = 0;
+    static uint32_t mag_he_last_housekeeping_task = 0;
+
     while (true) {
         protocol_pre_task();
         protocol_keyboard_task();
@@ -52,7 +56,14 @@ int main(void) {
 
 #ifdef RAW_ENABLE
         void raw_hid_task(void);
-        raw_hid_task();
+        // MAG_HE_LOW_LATENCY:
+        // Original QMK path ran raw_hid_task() every loop. Configuration traffic
+        // does not need matrix-rate polling, so run it every 5 ms.
+        // raw_hid_task();
+        if (timer_elapsed32(mag_he_last_raw_hid_task) >= 5) {
+            mag_he_last_raw_hid_task = timer_read32();
+            raw_hid_task();
+        }
 #endif
 
 #ifdef CONSOLE_ENABLE
@@ -72,6 +83,13 @@ int main(void) {
         deferred_exec_task();
 #endif // DEFERRED_EXEC_ENABLE
 
-        housekeeping_task();
+        // MAG_HE_LOW_LATENCY:
+        // Original QMK path ran housekeeping_task() every loop. Keyboard/keymap
+        // housekeeping is not input-critical here, so run it every 10 ms.
+        // housekeeping_task();
+        if (timer_elapsed32(mag_he_last_housekeeping_task) >= 10) {
+            mag_he_last_housekeeping_task = timer_read32();
+            housekeeping_task();
+        }
     }
 }

@@ -753,12 +753,22 @@ void quantum_task(void) {
 /** \brief Main task that is repeatedly called as fast as possible. */
 void keyboard_task(void) {
     __attribute__((unused)) bool activity_has_occurred = false;
+    static uint32_t mag_he_last_quantum_task = 0;
+    static uint32_t mag_he_last_led_task     = 0;
+
     if (matrix_task()) {
         last_matrix_activity_trigger();
         activity_has_occurred = true;
     }
 
-    quantum_task();
+    // MAG_HE_LOW_LATENCY:
+    // Original QMK path ran quantum_task() every loop. Keep matrix/input path fast
+    // and run time-dependent QMK housekeeping at 10 ms resolution instead.
+    // quantum_task();
+    if (timer_elapsed32(mag_he_last_quantum_task) >= 10) {
+        mag_he_last_quantum_task = timer_read32();
+        quantum_task();
+    }
 
 #if defined(SPLIT_WATCHDOG_ENABLE)
     split_watchdog_task();
@@ -840,7 +850,14 @@ void keyboard_task(void) {
     haptic_task();
 #endif
 
-    led_task();
+    // MAG_HE_LOW_LATENCY:
+    // Host LED polling is not input-critical for this keyboard. It is kept, but
+    // throttled to reduce fixed work after matrix_scan().
+    // led_task();
+    if (timer_elapsed32(mag_he_last_led_task) >= 10) {
+        mag_he_last_led_task = timer_read32();
+        led_task();
+    }
 
 #ifdef OS_DETECTION_ENABLE
     os_detection_task();
